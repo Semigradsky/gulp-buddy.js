@@ -1,0 +1,39 @@
+{
+  "name": "gulp-buddy.js",
+  "version": "0.0.1",
+  "description": "Gulp plugin for running buddy.js",
+  "license": "MIT",
+  "homepage": "https://github.com/Semigradsky/gulp-buddy.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Semigradsky/gulp-buddy.js.git"
+  },
+  "author": {
+    "name": "Dmitry Semigradsky",
+    "email": "semigradskyd@gmail.com",
+    "url": "https://github.com/Semigradsky"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "gulpplugin",
+    "magic",
+    "number",
+    "constant",
+    "detection",
+    "detect",
+    "sniffer",
+    "cli",
+    "tool"
+  ],
+  "dependencies": {
+    "gulp-util": "^3.0.0",
+    "buddy.js": "^0.7.0",
+    "through2": "^0.6.1",
+    "chalk": "*"
+  }
+}
