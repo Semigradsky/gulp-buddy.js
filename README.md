@@ -20,7 +20,7 @@ gulp.task('default', function () {
   return gulp.src('app.js')
     .pipe(buddyjs({
       disableIgnore: true,
-      reporter: detailed
+      reporter: 'detailed'
     }));
 });
 ```
@@ -54,6 +54,6 @@ Disables colors
 
 #### reporter
 Type: `String`
-Default value: `simple`
+Default value: `'simple'`
 
-Reporter to use. Options available are `simple`, `json` and `detailed`.
+Reporter to use. Options available are `'simple'`, `'json'` and `'detailed'`.
