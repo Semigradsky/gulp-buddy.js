@@ -1,4 +1,4 @@
-# [gulp](http://gulpjs.com)-buddy.js
+# gulp-[buddy.js](https://github.com/danielstjules/buddy.js)
 
 > Gulp plugin for running buddy.js
 
@@ -27,6 +27,12 @@ gulp.task('default', function () {
 
 
 ### Options
+
+#### detectObjects
+Type: `Boolean`
+Default value: `false`
+
+Detect object expressions and properties.
 
 #### ignore
 Type: `Array`
