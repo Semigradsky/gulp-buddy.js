@@ -3,19 +3,11 @@
 var gutil     = require('gulp-util');
 var through   = require('through2');
 var chalk     = require('chalk');
+var hookStdio = require('hook-stdio');
 var Detector  = require('buddy.js/lib/detector');
 var reporters = require('buddy.js/lib/reporters');
 
-function hook_stdout(callback) {
-	process.stdout.write = (function(write) {
-		return function(string, encoding, fd) {
-			write.apply(process.stdout, arguments);
-			callback(string, encoding, fd);
-		};
-	})(process.stdout.write);
-}
-
-function checkOutput(output, reporter) {
+function buddySucceeded(output, reporter) {
 	switch(reporter) {
 		case "simple":
 			return (output.indexOf("No magic numbers found") > -1);
@@ -62,15 +54,18 @@ module.exports = function(options) {
 		var reporter = new reporters[options.reporter](detector);
 
 		var output = "";
-		hook_stdout(function(string, encoding, fd) {
+		var unhook = hookStdio.stdout(function(string) {
 			output += string;
-		});
+		}, true);
 
 		detector.run().then(function() {
-			if (checkOutput(output, options.reporter)) {
+			unhook();
+
+			if (buddySucceeded(output, options.reporter)) {
 				cb();
+			} else {
+				cb(new gutil.PluginError('gulp-buddy.js', 'buddy.js failed'));
 			}
-			return;
 		}, function(e) {
 			throw new gutil.PluginError('gulp-buddy.js', e);
 		});
