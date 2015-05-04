@@ -31,9 +31,10 @@
     "tool"
   ],
   "dependencies": {
-    "gulp-util": "^3.0.0",
     "buddy.js": "^0.8.0",
-    "through2": "^0.6.1",
-    "chalk": "*"
+    "chalk": "*",
+    "gulp-util": "^3.0.0",
+    "hook-stdio": "^1.0.0",
+    "through2": "^0.6.1"
   }
 }
