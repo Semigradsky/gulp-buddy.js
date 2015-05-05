@@ -1,6 +1,6 @@
 {
   "name": "gulp-buddy.js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Gulp plugin for running buddy.js",
   "license": "MIT",
   "homepage": "https://github.com/Semigradsky/gulp-buddy.js",
@@ -31,7 +31,7 @@
     "tool"
   ],
   "dependencies": {
-    "buddy.js": "^0.9.0",
+    "buddy.js": "^0.8.0",
     "chalk": "*",
     "gulp-util": "^3.0.0",
     "hook-stdio": "^1.0.0",
