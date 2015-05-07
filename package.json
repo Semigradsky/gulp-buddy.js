@@ -1,6 +1,6 @@
 {
   "name": "gulp-buddy.js",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "description": "Gulp plugin for running buddy.js",
   "license": "MIT",
   "homepage": "https://github.com/Semigradsky/gulp-buddy.js",
