@@ -4,17 +4,18 @@ var gutil     = require('gulp-util');
 var through   = require('through2');
 var chalk     = require('chalk');
 var hookStdio = require('hook-stdio');
+var extend    = require('util-extend');
 var Detector  = require('buddy.js/lib/detector');
 var reporters = require('buddy.js/lib/reporters');
 
 function buddySucceeded(output, reporter) {
 	switch(reporter) {
-		case "simple":
-			return (output.indexOf("No magic numbers found") > -1);
-		case "detailed":
-			return (output.indexOf("No magic numbers found") > -1);
-		case "json":
-			return output === "[]";
+		case 'simple':
+			return (output.indexOf('No magic numbers found') > -1);
+		case 'detailed':
+			return (output.indexOf('No magic numbers found') > -1);
+		case 'json':
+			return output === '[]';
 		default:
 			return true;
 	}
@@ -23,18 +24,19 @@ function buddySucceeded(output, reporter) {
 module.exports = function(options) {
 	var paths = [];
 
-	options = options || {};
-	options.ignore = options.ignore || [0, 1];
-	options.disableIgnore = options.disableIgnore || false;
-	options.reporter = options.reporter || "simple";
-	options.enforceConst = options.enforceConst || false;
-	options.noColor = options.noColor || false;
+	options = extend({
+		ignore: [0, 1],
+		disableIgnore: false,
+		detectObjects: false,
+		reporter: 'simple',
+		enforceConst: false,
+		noColor: false
+	}, options);
+	options.ignore = options.disableIgnore ? [] : options.ignore;
 
 	if (options.noColor) {
 		chalk.enabled = false;
 	}
-
-	var ignore = options.disableIgnore ? [] : options.ignore;
 
 	return through.obj(function (file, enc, cb) {
 		if (file.isNull()) {
@@ -50,10 +52,10 @@ module.exports = function(options) {
 			return;
 		}
 
-		var detector = new Detector(paths, options, ignore);
+		var detector = new Detector(paths, options);
 		var reporter = new reporters[options.reporter](detector);
 
-		var output = "";
+		var output = '';
 		var unhook = hookStdio.stdout(function(string) {
 			output += string;
 		}, true);
