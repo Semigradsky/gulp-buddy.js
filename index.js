@@ -50,7 +50,7 @@ module.exports = function(options) {
 			return;
 		}
 
-		var detector = new Detector(paths, options.enforceConst, ignore);
+		var detector = new Detector(paths, options, ignore);
 		var reporter = new reporters[options.reporter](detector);
 
 		var output = "";
